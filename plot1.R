@@ -1,0 +1,8 @@
+pdata  <- read.csv("Downloads/household_power_consumption.txt",header = TRUE, sep=";")
+pdata$filterDate <-strptime(pdata$Date,"%d/%m/%Y")
+mdata <- subset(pdata,filterDate>=as.POSIXlt("2007-02-01") & filterDate<=as.POSIXlt("2007-02-02"))
+mdata$Global_active_power <- as.numeric(mdata$Global_active_power)
+hist(mdata$Global_active_power, col="red")
+hist(mdata$Global_active_power, col="red", xlab="Global Active Power (kilowatts)", main ="Global Active Power")
+dev.copy(png,"plot1.png")
+dev.off()
